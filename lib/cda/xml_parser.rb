@@ -95,10 +95,12 @@ module Cda
     end
 
     def parse_value(element)
-      if element.complex?
-        instantiate_from_element(resolve_class || element.model_class)
+      if (model_class = resolve_class)
+        instantiate_from_element(model_class)
       elsif (type = value_of('@type'))
         instantiate_from_element("Cda::#{type}".constantize)
+      elsif element.complex?
+        instantiate_from_element(element.model_class)
       else
         coerce_value(value_of('text()'), element.model_class)
       end
