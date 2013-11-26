@@ -1,5 +1,5 @@
 module Ccd
-  class PhysicalExamSection < ::Cda::Section
+  class PhysicalExamSection < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:7806) such that it

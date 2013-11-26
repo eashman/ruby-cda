@@ -1,5 +1,5 @@
 module Ccd
-  class ReasonForVisitSection < ::Cda::Section
+  class ReasonForVisitSection < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:7836) such that it

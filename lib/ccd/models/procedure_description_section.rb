@@ -1,5 +1,5 @@
 module Ccd
-  class ProcedureDescriptionSection < ::Cda::Section
+  class ProcedureDescriptionSection < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:8062) such that it

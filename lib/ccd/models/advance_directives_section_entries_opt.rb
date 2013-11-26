@@ -1,5 +1,5 @@
 module Ccd
-  class AdvanceDirectivesSectionEntriesOpt < ::Cda::Section
+  class AdvanceDirectivesSectionEntriesOpt < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:7928) such that it

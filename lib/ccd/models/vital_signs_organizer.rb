@@ -1,5 +1,5 @@
 module Ccd
-  class VitalSignsOrganizer < ::Cda::Organizer
+  class VitalSignsOrganizer < Cda::Organizer
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] @classCode="CLUSTER" CLUSTER (CodeSystem: HL7ActClass 2.16.840.1.113883.5.6 STATIC) (CONF:7279).

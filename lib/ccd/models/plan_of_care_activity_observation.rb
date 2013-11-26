@@ -1,5 +1,5 @@
 module Ccd
-  class PlanOfCareActivityObservation < ::Cda::Observation
+  class PlanOfCareActivityObservation < Cda::Observation
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] @classCode="OBS" (CodeSystem: HL7ActClass 2.16.840.1.113883.5.6 STATIC) (CONF:8581).

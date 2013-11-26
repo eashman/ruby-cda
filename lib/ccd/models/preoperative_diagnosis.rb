@@ -1,5 +1,5 @@
 module Ccd
-  class PreoperativeDiagnosis < ::Cda::Act
+  class PreoperativeDiagnosis < Cda::Act
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] @classCode="ACT" (CONF:10090).

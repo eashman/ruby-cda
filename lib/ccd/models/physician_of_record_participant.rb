@@ -1,5 +1,5 @@
 module Ccd
-  class PhysicianOfRecordParticipant < ::Cda::EncounterParticipant
+  class PhysicianOfRecordParticipant < Cda::EncounterParticipant
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] @typeCode="ATND" Attender (CodeSystem: HL7ParticipationType 2.16.840.1.113883.5.90 STATIC) (CONF:8881).

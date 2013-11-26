@@ -1,5 +1,5 @@
 module Ccd
-  class FamilyHistorySection < ::Cda::Section
+  class FamilyHistorySection < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:7932) such that it

@@ -1,5 +1,5 @@
 module Ccd
-  class DrugVehicle < ::Cda::ParticipantRole
+  class DrugVehicle < Cda::ParticipantRole
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] @classCode="MANU" (CodeSystem: RoleClass 2.16.840.1.113883.5.110 STATIC) (CONF:7490).

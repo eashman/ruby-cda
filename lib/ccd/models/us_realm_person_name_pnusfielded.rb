@@ -1,5 +1,5 @@
 module Ccd
-  class USRealmPersonNamePNUSFIELDED < ::Cda::PN
+  class USRealmPersonNamePNUSFIELDED < Cda::PN
     extend ::Ccd::Dsl
 
 

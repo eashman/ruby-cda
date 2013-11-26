@@ -1,5 +1,5 @@
 module Ccd
-  class FetusSubjectContext < ::Cda::RelatedSubject
+  class FetusSubjectContext < Cda::RelatedSubject
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:9189) such that it

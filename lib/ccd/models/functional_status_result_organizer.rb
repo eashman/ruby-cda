@@ -1,5 +1,5 @@
 module Ccd
-  class FunctionalStatusResultOrganizer < ::Cda::Organizer
+  class FunctionalStatusResultOrganizer < Cda::Organizer
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] @classCode="CLUSTER", which SHALL be selected from CodeSystem HL7ActClass (2.16.840.1.113883.5.6) STATIC (CONF:14355).

@@ -1,5 +1,5 @@
 module Ccd
-  class ImmunizationsSectionEntriesOptional < ::Cda::Section
+  class ImmunizationsSectionEntriesOptional < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:7965) such that it

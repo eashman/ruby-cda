@@ -1,5 +1,5 @@
 module Ccd
-  class EncountersSectionEntriesOptional < ::Cda::Section
+  class EncountersSectionEntriesOptional < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:7940) such that it

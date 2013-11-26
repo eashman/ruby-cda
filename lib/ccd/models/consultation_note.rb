@@ -1,5 +1,5 @@
 module Ccd
-  class ConsultationNote < ::Cda::ClinicalDocument
+  class ConsultationNote < Cda::ClinicalDocument
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:8375).

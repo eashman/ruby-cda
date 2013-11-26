@@ -1,5 +1,5 @@
 module Ccd
-  class FunctionalStatusSection < ::Cda::Section
+  class FunctionalStatusSection < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:7920) such that it

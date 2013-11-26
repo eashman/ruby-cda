@@ -1,5 +1,5 @@
 module Ccd
-  class OperativeNoteSurgicalProcedureSect < ::Cda::Section
+  class OperativeNoteSurgicalProcedureSect < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:8034) such that it

@@ -1,5 +1,5 @@
 module Ccd
-  class PreoperativeDiagnosisSection < ::Cda::Section
+  class PreoperativeDiagnosisSection < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:8097) such that it

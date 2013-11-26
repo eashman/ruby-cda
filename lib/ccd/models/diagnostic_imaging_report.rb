@@ -1,5 +1,5 @@
 module Ccd
-  class DiagnosticImagingReport < ::Cda::ClinicalDocument
+  class DiagnosticImagingReport < Cda::ClinicalDocument
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:8404) such that it

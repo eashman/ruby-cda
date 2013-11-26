@@ -1,5 +1,5 @@
 module Ccd
-  class ProcedureNote < ::Cda::ClinicalDocument
+  class ProcedureNote < Cda::ClinicalDocument
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:8496) such that it

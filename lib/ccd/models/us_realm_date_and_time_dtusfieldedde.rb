@@ -1,5 +1,5 @@
 module Ccd
-  class USRealmDateAndTimeDTUSFIELDEDDE < ::Cda::IVL_TS
+  class USRealmDateAndTimeDTUSFIELDEDDE < Cda::IVL_TS
     extend ::Ccd::Dsl
 
     # 	SHALL be precise to the day

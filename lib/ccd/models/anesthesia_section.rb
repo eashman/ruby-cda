@@ -1,5 +1,5 @@
 module Ccd
-  class AnesthesiaSection < ::Cda::Section
+  class AnesthesiaSection < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:8066) such that it

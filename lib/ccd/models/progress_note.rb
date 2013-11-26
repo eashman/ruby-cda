@@ -1,5 +1,5 @@
 module Ccd
-  class ProgressNote < ::Cda::ClinicalDocument
+  class ProgressNote < Cda::ClinicalDocument
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:7588) such that it

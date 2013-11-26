@@ -1,5 +1,5 @@
 module Ccd
-  class ObserverContext < ::Cda::AssignedAuthor
+  class ObserverContext < Cda::AssignedAuthor
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:9194) such that it

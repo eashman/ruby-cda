@@ -1,5 +1,5 @@
 module Ccd
-  class DischargeDietSection < ::Cda::Section
+  class DischargeDietSection < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:7975) such that it

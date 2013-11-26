@@ -1,5 +1,5 @@
 module Ccd
-  class VitalSignsSectionEntriesRequired < ::Cda::Section
+  class VitalSignsSectionEntriesRequired < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:7273) such that it

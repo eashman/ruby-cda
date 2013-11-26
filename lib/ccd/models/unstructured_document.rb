@@ -1,5 +1,5 @@
 module Ccd
-  class UnstructuredDocument < ::Cda::ClinicalDocument
+  class UnstructuredDocument < Cda::ClinicalDocument
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:7710) such that it

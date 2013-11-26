@@ -1,5 +1,5 @@
 module Ccd
-  class ProcedureEstimatedBloodLossSection < ::Cda::Section
+  class ProcedureEstimatedBloodLossSection < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:8074) such that it

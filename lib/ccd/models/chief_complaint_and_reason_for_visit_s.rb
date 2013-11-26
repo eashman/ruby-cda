@@ -1,5 +1,5 @@
 module Ccd
-  class ChiefComplaintAndReasonForVisitS < ::Cda::Section
+  class ChiefComplaintAndReasonForVisitS < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:7840) such that it

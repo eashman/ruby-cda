@@ -1,5 +1,5 @@
 module Ccd
-  class USRealmPatientNamePTNUSFIELDED < ::Cda::PN
+  class USRealmPatientNamePTNUSFIELDED < Cda::PN
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] family (CONF:7159).

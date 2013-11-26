@@ -1,5 +1,5 @@
 module Ccd
-  class MedicationsSectionEntriesOptional < ::Cda::Section
+  class MedicationsSectionEntriesOptional < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:7791) such that it

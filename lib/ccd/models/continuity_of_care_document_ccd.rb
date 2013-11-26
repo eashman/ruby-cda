@@ -1,5 +1,5 @@
 module Ccd
-  class ContinuityOfCareDocumentCCD < ::Cda::ClinicalDocument
+  class ContinuityOfCareDocumentCCD < Cda::ClinicalDocument
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:8450) such that it

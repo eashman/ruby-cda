@@ -1,5 +1,5 @@
 module Ccd
-  class ProcedureImplantsSection < ::Cda::Section
+  class ProcedureImplantsSection < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:8178) such that it

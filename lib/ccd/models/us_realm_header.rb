@@ -1,5 +1,5 @@
 module Ccd
-  class USRealmHeader < ::Cda::ClinicalDocument
+  class USRealmHeader < Cda::ClinicalDocument
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] realmCode="US" (CONF:16791).

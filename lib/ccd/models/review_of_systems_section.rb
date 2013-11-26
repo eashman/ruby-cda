@@ -1,5 +1,5 @@
 module Ccd
-  class ReviewOfSystemsSection < ::Cda::Section
+  class ReviewOfSystemsSection < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:7812) such that it

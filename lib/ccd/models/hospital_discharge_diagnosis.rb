@@ -1,5 +1,5 @@
 module Ccd
-  class HospitalDischargeDiagnosis < ::Cda::Act
+  class HospitalDischargeDiagnosis < Cda::Act
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] @classCode="ACT" (CodeSystem: HL7ActClass 2.16.840.1.113883.5.6 STATIC) (CONF:7663).

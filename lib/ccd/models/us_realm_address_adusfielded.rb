@@ -1,5 +1,5 @@
 module Ccd
-  class USRealmAddressADUSFIELDED < ::Cda::AD
+  class USRealmAddressADUSFIELDED < Cda::AD
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] city (CONF:7292).

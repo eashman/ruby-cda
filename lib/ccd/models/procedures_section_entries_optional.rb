@@ -1,5 +1,5 @@
 module Ccd
-  class ProceduresSectionEntriesOptional < ::Cda::Section
+  class ProceduresSectionEntriesOptional < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:6270) such that it

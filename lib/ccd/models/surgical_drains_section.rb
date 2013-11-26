@@ -1,5 +1,5 @@
 module Ccd
-  class SurgicalDrainsSection < ::Cda::Section
+  class SurgicalDrainsSection < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:8038) such that it

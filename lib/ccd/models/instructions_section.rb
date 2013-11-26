@@ -1,5 +1,5 @@
 module Ccd
-  class InstructionsSection < ::Cda::Section
+  class InstructionsSection < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:10112) such that it

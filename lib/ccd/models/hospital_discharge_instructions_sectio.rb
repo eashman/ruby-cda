@@ -1,5 +1,5 @@
 module Ccd
-  class HospitalDischargeInstructionsSectio < ::Cda::Section
+  class HospitalDischargeInstructionsSectio < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:9919) such that it

@@ -1,5 +1,5 @@
 module Ccd
-  class ObjectiveSection < ::Cda::Section
+  class ObjectiveSection < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:7869) such that it

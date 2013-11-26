@@ -1,5 +1,5 @@
 module Ccd
-  class ResultsSectionEntriesRequired < ::Cda::Section
+  class ResultsSectionEntriesRequired < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:7108) such that it

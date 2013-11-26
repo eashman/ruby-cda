@@ -1,5 +1,5 @@
 module Ccd
-  class DischargeSummary < ::Cda::ClinicalDocument
+  class DischargeSummary < Cda::ClinicalDocument
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:8463) such that it

@@ -1,5 +1,5 @@
 module Ccd
-  class ProblemSectionEntriesRequired < ::Cda::Section
+  class ProblemSectionEntriesRequired < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:9179) such that it

@@ -1,5 +1,5 @@
 module Ccd
-  class PostprocedureDiagnosis < ::Cda::Act
+  class PostprocedureDiagnosis < Cda::Act
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] @classCode="ACT" (CONF:8756).

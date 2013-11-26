@@ -1,5 +1,5 @@
 module Ccd
-  class PlanOfCareSection < ::Cda::Section
+  class PlanOfCareSection < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:7723) such that it

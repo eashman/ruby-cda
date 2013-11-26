@@ -1,5 +1,5 @@
 module Ccd
-  class PlanOfCareActivityProcedure < ::Cda::Procedure
+  class PlanOfCareActivityProcedure < Cda::Procedure
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] @classCode="PROC" (CodeSystem: HL7ActClass 2.16.840.1.113883.5.6 STATIC) (CONF:8568).

@@ -1,5 +1,5 @@
 module Ccd
-  class HistoryOfPastIllnessSection < ::Cda::Section
+  class HistoryOfPastIllnessSection < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:7828) such that it

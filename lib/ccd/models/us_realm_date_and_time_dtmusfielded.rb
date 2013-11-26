@@ -1,5 +1,5 @@
 module Ccd
-  class USRealmDateAndTimeDTMUSFIELDED < ::Cda::TS
+  class USRealmDateAndTimeDTMUSFIELDED < Cda::TS
     extend ::Ccd::Dsl
 
 

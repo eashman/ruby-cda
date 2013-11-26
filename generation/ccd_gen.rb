@@ -41,9 +41,11 @@ module CcdGen
   end
 
   def mk_class(template, filename)
-    ancestor = '::Cda::' + Gen::Namings.mk_class_name(template[:contextType])
+    class_name = class_name(template)
+    ancestor = class_ancestor(template, class_name)
+
     include_dsl = "extend ::Ccd::Dsl\n"
-    context = Context.new(class_name(template), ancestor.constantize, [])
+    context = Context.new(class_name, ancestor, [])
     attributes = mk_constraints(context, template.xpath('./Constraint'))
     extension = "Ccd.load_extension('#{filename}')"
 
@@ -59,6 +61,16 @@ module CcdGen
                       module: 'Ccd',
                       ancestor: ancestor,
                       body: body)
+  end
+
+  ANCESTORS = {
+    "PreconditionForSubstanceAdministrat" => "::Cda::Criterion"
+  }
+
+  def class_ancestor(template, class_name)
+    default = '::Cda::' + Gen::Namings.mk_class_name(template[:contextType])
+
+    (ANCESTORS[class_name] || default).constantize
   end
 
   def class_name(template)

@@ -1,5 +1,5 @@
 module Ccd
-  class PreconditionForSubstanceAdministrat < ::Cda::Criterion
+  class PreconditionForSubstanceAdministrat < Cda::Criterion
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:7372) such that it

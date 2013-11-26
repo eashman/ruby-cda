@@ -1,5 +1,5 @@
 module Ccd
-  class PhysicianReadingStudyPerformer < ::Cda::Performer1
+  class PhysicianReadingStudyPerformer < Cda::Performer1
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] @typeCode="PRF" Performer (CodeSystem: HL7ActClass 2.16.840.1.113883.5.6 STATIC) (CONF:8424).

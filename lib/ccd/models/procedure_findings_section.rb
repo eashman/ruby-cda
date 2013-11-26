@@ -1,5 +1,5 @@
 module Ccd
-  class ProcedureFindingsSection < ::Cda::Section
+  class ProcedureFindingsSection < Cda::Section
     extend ::Ccd::Dsl
 
     # SHALL contain exactly one [1..1] templateId (CONF:8078) such that it
