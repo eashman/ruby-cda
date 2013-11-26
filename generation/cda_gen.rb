@@ -1,5 +1,6 @@
-require 'nokogiri'
+require 'date'
 require 'active_support/core_ext'
+require 'nokogiri'
 
 module Gen
   autoload :Meta, 'gen/meta.rb'
@@ -161,7 +162,7 @@ module Gen
 
   def meta_options(el)
     {}.tap do |opts|
-      if el[:maxOccurs] == 'unbounded'
+      if el.xpath('self::*[@maxOccurs="unbounded"] | ancestor::choice[@maxOccurs="unbounded"]').length > 0
         opts[:multiple] = true
         opts[:annotations] = { multiple: true }
       end
