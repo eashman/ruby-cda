@@ -64,7 +64,7 @@ module CcdGen
   end
 
   ANCESTORS = {
-    "PreconditionForSubstanceAdministrat" => "::Cda::Criterion"
+    "PreconditionForSubstanceAdministrat" => "::Cda::Precondition"
   }
 
   def class_ancestor(template, class_name)
