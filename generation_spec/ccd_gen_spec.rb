@@ -17,6 +17,7 @@ describe CcdGen do
     ccd_dir = Pathname.new(__FILE__).dirname.join('..', 'lib', 'ccd')
     Dir[
       ccd_dir.join('models', '*.rb'),
+      ccd_dir.join('templates', '*.rb'),
       ccd_dir.join('{autoload,registry}.rb')
     ].each { |f| require f }
   end

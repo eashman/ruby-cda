@@ -19,7 +19,7 @@ module Gen::Namings
     end
   end
 
-  def mk_class_fname(class_name)
+  def mk_fname(class_name)
     class_name.underscore + '.rb'
   end
 

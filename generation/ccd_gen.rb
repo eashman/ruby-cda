@@ -20,17 +20,28 @@ module CcdGen
     Nokogiri::XML.parse(File.open('xsd/Consolidation.xml')).remove_namespaces!
   end
 
-  def generate
-    prefix = 'lib/ccd/models'
-    `rm -fr #{prefix}`
-    `mkdir -p #{prefix}`
+  def models_dir
+    'lib/ccd/models'
+  end
 
+  def templates_dir
+    'lib/ccd/templates'
+  end
+
+  def cleanup
+    [models_dir, templates_dir].each do |dir|
+      `rm -rf #{dir}`
+      `mkdir -p #{dir}`
+    end
+  end
+
+  def generate
     autoload_entries = []
     registry_entries = []
     templates.each do |template|
       class_name = class_name(template)
-      class_file_name = File.join("#{prefix}/", Gen::Namings.mk_class_fname(class_name))
-      class_body = mk_class(template, File.basename(class_file_name))
+      class_file_name = File.join(models_dir, Gen::Namings.mk_fname(class_name))
+      class_body = mk_class(template)
       fwrite(class_file_name, class_body)
       autoload_entries << "autoload :#{class_name}, '#{class_file_name.sub(/^lib\//, '')}'"
       registry_entries << "add('#{template['oid']}', Ccd::#{class_name})"
@@ -40,14 +51,19 @@ module CcdGen
     fwrite('lib/ccd/_registry.rb', registry_entries.join("\n"))
   end
 
-  def mk_class(template, filename)
+
+  def mk_class(template)
+    mk_module(template)
+  end
+
+  def mk_module(template)
     class_name = class_name(template)
     ancestor = class_ancestor(template, class_name)
 
     include_dsl = "extend ::Ccd::Dsl\n"
     context = Context.new(class_name, ancestor, [])
     attributes = mk_constraints(context, template.xpath('./Constraint'))
-    extension = "Ccd.load_extension('#{filename}')"
+    extension = "Ccd.load_extension('#{Gen::Namings.mk_fname(class_name)}')"
 
     template_type = if template[:context].present?
                       "def self.template_type\n  #{template[:context].inspect}\nend\n"
