@@ -1,7 +1,6 @@
 module Ccd
   class USRealmDateAndTimeDTMUSFIELDED < Cda::TS
-    extend ::Ccd::Dsl
-
+    include Ccd::USRealmDateAndTimeDTMUSFIELDEDTemplate
 
     def self.template_type
       "effectiveTime"

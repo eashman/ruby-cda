@@ -21,11 +21,11 @@ module CcdGen
   end
 
   def models_dir
-    'lib/ccd/models'
+    File.expand_path('../../lib/ccd/models', __FILE__)
   end
 
   def templates_dir
-    'lib/ccd/templates'
+    File.expand_path('../../lib/ccd/templates', __FILE__)
   end
 
   def cleanup
@@ -36,14 +36,18 @@ module CcdGen
   end
 
   def generate
+    cleanup
     autoload_entries = []
     registry_entries = []
     templates.each do |template|
       class_name = class_name(template)
+      module_name = module_name(template)
       class_file_name = File.join(models_dir, Gen::Namings.mk_fname(class_name))
-      class_body = mk_class(template)
-      fwrite(class_file_name, class_body)
+      module_file_name = File.join(templates_dir, Gen::Namings.mk_fname(module_name))
+      fwrite(module_file_name, mk_module(template))
+      fwrite(class_file_name, mk_class(template))
       autoload_entries << "autoload :#{class_name}, '#{class_file_name.sub(/^lib\//, '')}'"
+      autoload_entries << "autoload :#{module_name}, '#{module_file_name.sub(/^lib\//, '')}'"
       registry_entries << "add('#{template['oid']}', Ccd::#{class_name})"
     end
 
@@ -51,32 +55,36 @@ module CcdGen
     fwrite('lib/ccd/_registry.rb', registry_entries.join("\n"))
   end
 
-
   def mk_class(template)
-    mk_module(template)
+    class_name = class_name(template)
+    ancestor = class_ancestor(template, class_name)
+    extension = "Ccd.load_extension('#{Gen::Namings.mk_fname(class_name)}')"
+    template_include = "include Ccd::#{module_name(template)}\n"
+    template_type = if template[:context].present?
+                      "def self.template_type\n  #{template[:context].inspect}\nend\n"
+                    else
+                      nil
+                    end
+    body = [template_include, template_type, extension].join("\n")
+    Gen::Codeg.gklass(class_name(template),
+                      module: 'Ccd',
+                      ancestor: ancestor,
+                      body: body)
   end
 
   def mk_module(template)
     class_name = class_name(template)
     ancestor = class_ancestor(template, class_name)
 
-    include_dsl = "extend ::Ccd::Dsl\n"
     context = Context.new(class_name, ancestor, [])
+    include_dsl = "extend ::Ccd::Dsl\n"
     attributes = mk_constraints(context, template.xpath('./Constraint'))
-    extension = "Ccd.load_extension('#{Gen::Namings.mk_fname(class_name)}')"
 
-    template_type = if template[:context].present?
-                      "def self.template_type\n  #{template[:context].inspect}\nend\n"
-                    else
-                      nil
-                    end
+    body = [include_dsl, attributes].join("\n")
+    body = Gen::Codeg.gmethod("self.included", ['base'],
+                              Gen::Codeg.gblock('base.class_eval do', body))
 
-    body = [include_dsl, attributes, template_type, extension].join("\n")
-
-    Gen::Codeg.gklass(class_name(template),
-                      module: 'Ccd',
-                      ancestor: ancestor,
-                      body: body)
+    Gen::Codeg.gmodule("Ccd::#{module_name(template)}", body)
   end
 
   ANCESTORS = {
@@ -91,6 +99,10 @@ module CcdGen
 
   def class_name(template)
     Gen::Namings.mk_ccd_class_name(template[:bookmark])
+  end
+
+  def module_name(template)
+    "#{self.class_name(template)}Template"
   end
 
   def mk_constraints(context, constraints)

@@ -68,6 +68,16 @@ module Gen
       res.join("\n")
     end
 
+    def gmethod(method_name, args, body)
+      definition = "def #{method_name}"
+      definition << "(#{args.join(', ')})" if args.present?
+      gblock(definition, body)
+    end
+
+    def gblock(starts_with, body, ends_with='end')
+      [starts_with, indent(body, 2), ends_with].join("\n")
+    end
+
     private
 
     def indent(str, size)

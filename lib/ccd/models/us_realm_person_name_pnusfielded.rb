@@ -1,7 +1,6 @@
 module Ccd
   class USRealmPersonNamePNUSFIELDED < Cda::PN
-    extend ::Ccd::Dsl
-
+    include Ccd::USRealmPersonNamePNUSFIELDEDTemplate
 
     def self.template_type
       "name"

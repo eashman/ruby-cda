@@ -1,9 +1,6 @@
 module Ccd
   class USRealmDateAndTimeDTUSFIELDEDDE < Cda::IVL_TS
-    extend ::Ccd::Dsl
-
-    # 	SHALL be precise to the day
-    constraint '', {:cardinality=>"1..1"}
+    include Ccd::USRealmDateAndTimeDTUSFIELDEDDETemplate
 
     def self.template_type
       "IVL_TS"
