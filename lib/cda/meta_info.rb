@@ -92,7 +92,7 @@ class Cda::MetaInfo
     private
 
     def sanitize_element_name(element_name)
-      element_name.to_s.camelize(:lower).singularize.presence
+      element_name.to_s.camelize(:lower).presence
     end
   end
 end

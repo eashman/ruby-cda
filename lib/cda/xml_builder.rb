@@ -62,12 +62,16 @@ class Cda::XmlBuilder
 
   def build_document
     self.xml = Nokogiri::XML::Builder.new
-    xml.ClinicalDocument(
-      'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
-      'xsi:schemaLocation' => "urn:hl7-org:v3 http://xreg2.nist.gov:8080/hitspValidation/schema/cdar2c32/infrastructure/cda/C32_CDA.xsd",
-      'xmlns' => "urn:hl7-org:v3",
-      'xmlns:mif' => "urn:hl7-org:v3/mif"
-    ) do |_|
+    if template_type != 'ClinicalDocument'
+      xml.ClinicalDocument(
+        'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance",
+        'xsi:schemaLocation' => "urn:hl7-org:v3 http://xreg2.nist.gov:8080/hitspValidation/schema/cdar2c32/infrastructure/cda/C32_CDA.xsd",
+        'xmlns' => "urn:hl7-org:v3",
+        'xmlns:mif' => "urn:hl7-org:v3/mif"
+      ) do |_|
+        build
+      end
+    else
       build
     end
     xml.doc
@@ -115,7 +119,7 @@ class Cda::XmlBuilder
     meta_info = Cda::MetaInfo.for(instance.class)
     options = additional_options.merge(get_attributes_as_hash(instance, meta_info.attributes))
     text = cda_mixed?(instance) ? instance._text : nil
-    node(element_name, text, options) do
+    node(element_name, text, options) do |_|
       meta_info.elements.each do |element|
         if (build_method = element.build_method)
           instance.send(build_method, self, element, :xml)
@@ -166,9 +170,20 @@ class Cda::XmlBuilder
   end
 
   def get_attributes_as_hash(model, attributes)
-    attributes.each_with_object({}) do |attribute, hash|
+    hash = attributes.each_with_object({}) do |attribute, hash|
       hash[attribute.fully_qualified_name] = auto_format(attribute.get_value(model))
     end
+    hash['xsi:schemaLocation'] = model.class.schema_location if model.class.respond_to?(:schema_location)
+    if model.class.respond_to?(:namespaces)
+      model.class.namespaces.each do |ns, uri|
+        if ns == :default
+          hash['xmlns'] = uri
+        else
+          hash["xmlns:#{ns}"] = uri
+        end
+      end
+    end
+    hash
   end
 
   def wrap_node_if_required(element)

@@ -20,8 +20,12 @@ module Ccd
       name = args.shift
 
       @constraints ||= {}
-
-      raise RuntimeError, "Duplicate constraint: #{self.name}##{name} #{opts.inspect}" if @constraints[name].present?
+      current_constraint = @constraints[name]
+      if current_constraint
+        unless current_constraint == opts.slice(*current_constraint.keys)
+          raise RuntimeError, "Duplicate constraint: #{self.name}##{name} #{opts.inspect}"
+        end
+      end
       @constraints[name] = opts
 
       save_default_value(name, opts[:value]) if opts[:value].present? && opts[:cardinality] == '1..1'
