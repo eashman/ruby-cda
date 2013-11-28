@@ -26,9 +26,14 @@ module Cda
 
       def defaults
         @defaults ||= self.constraints.reduce({}) do |acc, (path, constraints)|
-          constraint = constraints.first
-          if constraint[:value].present? && constraint[:cardinality] == '1..1'
-            Cda::Utility.merge_json(acc, Utility.inference(path.split('.'), constraint[:value], self))
+          values = constraints.
+            select { |c| c[:cardinality] == '1..1' }.
+            map { |c| c[:value].presence }.
+            compact
+          if values.present?
+            normalized_value = values.length > 1 ? values : values.first
+            default_value = Utility.inference(path.split('.'), normalized_value, self)
+            Cda::Utility.merge_json(acc, default_value)
           else
             acc
           end

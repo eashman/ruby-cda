@@ -20,7 +20,9 @@ module Cda
       value = inference(path, value, klass)
 
       if is_collection
-        {name => [value]}
+        {name => (value.is_a?(Array) ? value : [value])}
+      elsif value.is_a?(Array)
+        value.map { |val| {name => val} }
       else
         {name => value}
       end
