@@ -19,7 +19,7 @@ module Ccd::USRealmHeaderTemplate
       constraint 'template_id', {:cardinality=>"1..1"}
       
       # SHALL contain exactly one [1..1] @root="2.16.840.1.113883.10.20.22.1.1" (CONF:10036).
-      #constraint 'template_id.root', {:cardinality=>"1..1", :value=>"2.16.840.1.113883.10.20.22.1.1"}
+      constraint 'template_id.root', {:cardinality=>"1..1", :value=>"2.16.840.1.113883.10.20.22.1.1"}
       
       # SHALL contain exactly one [1..1] id (CONF:5363).
       constraint 'id', {:cardinality=>"1..1"}

@@ -32,7 +32,7 @@ describe CcdGen do
     end
 
     match do |model|
-      constraint = model.constraints[name]
+      constraint = model.constraints[name].try(:first)
       if @attrs
         not constraint.nil? and constraint.deep_merge(@attrs) == constraint
       else
