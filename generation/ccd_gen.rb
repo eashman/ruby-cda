@@ -20,12 +20,16 @@ module CcdGen
     Nokogiri::XML.parse(File.open('xsd/Consolidation.xml')).remove_namespaces!
   end
 
+  def lib_dir
+    Pathname.new(__FILE__).join('..', '..', 'lib').expand_path
+  end
+
   def models_dir
-    File.expand_path('../../lib/ccd/models', __FILE__)
+    lib_dir.join('ccd', 'models')
   end
 
   def templates_dir
-    File.expand_path('../../lib/ccd/templates', __FILE__)
+    lib_dir.join('ccd', 'templates')
   end
 
   def cleanup
@@ -42,12 +46,12 @@ module CcdGen
     templates.each do |template|
       class_name = class_name(template)
       module_name = module_name(template)
-      class_file_name = File.join(models_dir, Gen::Namings.mk_fname(class_name))
-      module_file_name = File.join(templates_dir, Gen::Namings.mk_fname(module_name))
+      class_file_name = models_dir.join(Gen::Namings.mk_fname(class_name))
+      module_file_name = templates_dir.join(Gen::Namings.mk_fname(module_name))
       fwrite(module_file_name, mk_module(template))
       fwrite(class_file_name, mk_class(template))
-      autoload_entries << "autoload :#{class_name}, '#{class_file_name.sub(/^lib\//, '')}'"
-      autoload_entries << "autoload :#{module_name}, '#{module_file_name.sub(/^lib\//, '')}'"
+      autoload_entries << "autoload :#{class_name}, '#{class_file_name.relative_path_from(lib_dir)}'"
+      autoload_entries << "autoload :#{module_name}, '#{module_file_name.relative_path_from(lib_dir)}'"
       registry_entries << "add('#{template['oid']}', Ccd::#{class_name})"
     end
 
