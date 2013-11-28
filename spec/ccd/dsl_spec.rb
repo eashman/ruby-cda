@@ -8,19 +8,6 @@ describe Ccd do
     end
   end
 
-  context '.inference' do
-    example do
-      path = 'record_target.patient_role.provider_organization.id.root'.split '.'
-      given = Ccd::USRealmHeader.inference(path, '42')
-      expected = { record_target: [{patient_role:{provider_organization:{id: [{root: '42'}]}}}] }
-      given.should == expected.with_indifferent_access
-    end
-
-    example do
-      Ccd::USRealmHeader.inference(['realm_code'], 'US').should == { 'realm_code' => ['US'] }
-    end
-  end
-
   context 'merge' do
     let(:converter) { Cda::Utility }
     context '.object_to_hash' do

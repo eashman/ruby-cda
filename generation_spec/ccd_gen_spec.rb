@@ -62,7 +62,7 @@ describe CcdGen do
   example do
     Ccd::PolicyActivity.should have_constraint('performer.type_code').with_value('PRF')
     Ccd::MedicationUseNoneKnownDeprecated.should have_constraint('value').with_value(code: '182904002')
-    Ccd::USRealmHeader.should have_constraint('realm_code.code').with_value(code: 'US')
+    Ccd::USRealmHeader.should have_constraint('realm_code.code').with_value('US')
   end
 
   example do

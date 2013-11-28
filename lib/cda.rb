@@ -13,6 +13,7 @@ module Cda
   autoload :RSpec, "cda/rspec"
   autoload :MetaInfo, "cda/meta_info"
   autoload :StrictAttributes, 'cda/strict_attributes'
+  autoload :Constraints, 'cda/constraints'
   autoload :Utility, 'cda/utility'
   autoload :ValueCoercer, 'cda/value_coercer'
   autoload :Timestamp, 'cda/timestamp'

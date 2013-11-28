@@ -2,6 +2,45 @@ module Cda
   module Utility
     extend self
 
+    def inference(path, value, context)
+      # puts if self == context
+      # puts "inference(#{path}, #{value}, #{context})"
+      return value if path.empty?
+
+      name = path.shift
+
+      if path.empty? && value.is_a?(Hash) && value.key?(:_type)
+        klass = value[:_type].constantize
+        is_collection = false
+      else
+        klass = attribute_class(context, name)
+        is_collection = collection?(context, name)
+      end
+
+      value = inference(path, value, klass)
+
+      if is_collection
+        {name => [value]}
+      else
+        {name => value}
+      end
+    end
+
+    def attribute_class(context, attribute)
+      attribute_decl = context.attribute_set[attribute.to_sym]
+
+      type = attribute_decl.respond_to?(:member_type) ? attribute_decl.member_type : attribute_decl.type
+      type.primitive
+    end
+
+    def collection?(context, attribute)
+      annotations(context, attribute)[:multiple]
+    end
+
+    def annotations(context, attribute)
+      context.attribute_set[attribute.to_sym].annotations
+    end
+
     def merge_json(x, y)
       hash_to_object object_to_hash(x).deep_merge(object_to_hash(y))
     end
