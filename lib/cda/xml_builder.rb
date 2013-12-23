@@ -117,12 +117,13 @@ class Cda::XmlBuilder
   def build_instance_element(element_name, instance, additional_options = {})
     return if instance.nil? || instance == ""
     meta_info = Cda::MetaInfo.for(instance.class)
-    options = additional_options.merge(get_attributes_as_hash(instance, meta_info.attributes))
-    text = cda_mixed?(instance) ? instance._text : nil
-    node(element_name, text, options) do |_|
+    args = []
+    args << instance._text if cda_mixed?(instance)
+    args << additional_options.merge(get_attributes_as_hash(instance, meta_info.attributes))
+    node(element_name, *args) do |_|
       meta_info.elements.each do |element|
-        if (build_method = element.build_method)
-          instance.send(build_method, self, element, :xml)
+        if element.build_method
+          instance.send(element.build_method, self, element, :xml)
         else
           build_element(element.get_value(instance), element)
         end
