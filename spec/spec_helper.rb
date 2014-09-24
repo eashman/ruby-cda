@@ -5,4 +5,4 @@ require 'lib/virtus_annotations'
 require 'lib/cda'
 require 'lib/ccd'
 require 'nokogiri'
-
+require 'rspec/collection_matchers'
