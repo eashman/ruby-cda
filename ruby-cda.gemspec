@@ -6,6 +6,9 @@ Gem::Specification.new do |spec|
   spec.name          = 'ruby-cda'
   spec.version       = '0.0.1'
 
+  spec.authors     = ["Hospital-Systems"]
+  spec.email       = 'support@test.com'
+  spec.homepage    = 'https://github.com/eashman/ruby-cda'
   spec.files         = `git ls-files lib`.split($/)
   spec.require_paths = ['lib']
 
